@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1410" height="100" viewBox="0 0 1410 100">
+<defs>
+<marker id="arrow-seq" viewBox="0 0 12 6" refX="11" refY="3" markerWidth="12" markerHeight="6" orient="auto">
+<path d="M 0 0 L 12 3 L 0 6 z" fill="#cccccc"/>
+</marker>
+<marker id="arrow-msg" viewBox="0 0 12 6" refX="11" refY="3" markerWidth="12" markerHeight="6" orient="auto">
+<path d="M 0 0 L 12 3 L 0 6 z" fill="none" stroke="#cccccc" stroke-width="1"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="1410" height="100" fill="#1a1a1a"/>
+<g class="lanes">
+<rect x="120" y="0" width="1290" height="100" fill="#222222"/>
+<rect x="0" y="0" width="120" height="100" fill="#2a2a2a"/>
+<rect x="0" y="0" width="120" height="100" fill="none" stroke="#444444" stroke-width="1"/>
+<rect x="120" y="0" width="1290" height="100" fill="none" stroke="#444444" stroke-width="1"/>
+<text x="60" y="50" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#dddddd" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 60 50)">Sales</text>
+</g>
+<g class="edges">
+<path d="M 267 50 L 422.5 50" fill="none" stroke="#cccccc" stroke-width="1.5" marker-end="url(#arrow-seq)"/>
+<path d="M 591.5 50 L 648 50" fill="none" stroke="#cccccc" stroke-width="1.5" marker-end="url(#arrow-seq)"/>
+<path d="M 882 50 L 923.5 50" fill="none" stroke="#cccccc" stroke-width="1.5" marker-end="url(#arrow-seq)"/>
+<path d="M 1122.5 50 L 1261 50" fill="none" stroke="#cccccc" stroke-width="1.5" marker-end="url(#arrow-seq)"/>
+</g>
+<g class="nodes">
+<circle cx="249" cy="50" r="18" fill="#2a2a2a" stroke="#cccccc" stroke-width="1.5"/>
+<text x="249" y="84.4" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#eeeeee" text-anchor="middle">Order received</text>
+<rect x="422.5" y="25" width="169" height="50" rx="8" ry="8" fill="#2a2a2a" stroke="#cccccc" stroke-width="1.5"/>
+<text x="507" y="50" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#eeeeee" text-anchor="middle" dominant-baseline="middle">Verify order details</text>
+<rect x="648" y="25" width="234" height="50" rx="8" ry="8" fill="#2a2a2a" stroke="#cccccc" stroke-width="1.5"/>
+<text x="765" y="50" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#eeeeee" text-anchor="middle" dominant-baseline="middle">Confirm order with customer</text>
+<rect x="923.5" y="25" width="199" height="50" rx="8" ry="8" fill="#2a2a2a" stroke="#cccccc" stroke-width="1.5"/>
+<text x="1023" y="50" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#eeeeee" text-anchor="middle" dominant-baseline="middle">Send confirmation email</text>
+<circle cx="1281" cy="50" r="20" fill="#2a2a2a" stroke="#cccccc" stroke-width="2"/>
+<circle cx="1281" cy="50" r="15" fill="none" stroke="#cccccc" stroke-width="1.5"/>
+<text x="1281" y="86.4" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#eeeeee" text-anchor="middle">Order confirmed</text>
+</g>
+</svg>

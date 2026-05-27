@@ -103,3 +103,12 @@ dramatically when the LLM gets parser output as feedback:
 
 Expose the error codes verbatim; the model has been instructed in
 `ai/error-recovery.md` to recognise them.
+
+## Optional: visual round-trip
+
+If your application also has access to `@laneflow/renderer` (see
+`impl-render/`), you can render every parser-accepted candidate to
+SVG (or PNG) and show it to the end user before committing the
+document. The renderer assumes a valid `Document` and does not
+participate in validation — keep `@laneflow/parser` as the single
+source of truth for "is this LaneFlow well-formed?".
