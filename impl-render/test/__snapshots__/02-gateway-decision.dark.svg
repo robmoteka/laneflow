@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="201" height="720" viewBox="0 0 201 720">
+<defs>
+<marker id="arrow-seq" viewBox="0 0 12 6" refX="11" refY="3" markerWidth="12" markerHeight="6" orient="auto">
+<path d="M 0 0 L 12 3 L 0 6 z" fill="#cccccc"/>
+</marker>
+<marker id="arrow-msg" viewBox="0 0 12 6" refX="11" refY="3" markerWidth="12" markerHeight="6" orient="auto">
+<path d="M 0 0 L 12 3 L 0 6 z" fill="none" stroke="#cccccc" stroke-width="1"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="201" height="720" fill="#1a1a1a"/>
+<g class="lanes">
+<rect x="0" y="120" width="201" height="600" fill="#222222"/>
+<rect x="0" y="0" width="201" height="120" fill="#2a2a2a"/>
+<rect x="0" y="0" width="201" height="120" fill="none" stroke="#444444" stroke-width="1"/>
+<rect x="0" y="120" width="201" height="600" fill="none" stroke="#444444" stroke-width="1"/>
+<text x="100.5" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#dddddd" text-anchor="middle" dominant-baseline="middle">Sales</text>
+</g>
+<g class="edges">
+<path d="M 100.5 198 L 100.5 275" fill="none" stroke="#cccccc" stroke-width="1.5" marker-end="url(#arrow-seq)"/>
+<path d="M 100.5 325 L 100.5 395" fill="none" stroke="#cccccc" stroke-width="1.5" marker-end="url(#arrow-seq)"/>
+<path d="M 100.5 445 L 100.5 515" fill="none" stroke="#cccccc" stroke-width="1.5" marker-end="url(#arrow-seq)"/>
+<rect x="86.06" y="472" width="28.879999999999995" height="16" fill="#1a1a1a"/>
+<text x="100.5" y="480" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#eeeeee" text-anchor="middle" dominant-baseline="middle">yes</text>
+<path d="M 100.5 565 L 100.5 640" fill="none" stroke="#cccccc" stroke-width="1.5" marker-end="url(#arrow-seq)"/>
+<path d="M 100.5 445 L 100.5 515" fill="none" stroke="#cccccc" stroke-width="1.5" marker-end="url(#arrow-seq)"/>
+<rect x="89.54" y="472" width="21.919999999999998" height="16" fill="#1a1a1a"/>
+<text x="100.5" y="480" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#eeeeee" text-anchor="middle" dominant-baseline="middle">no</text>
+<path d="M 100.5 565 L 100.5 640" fill="none" stroke="#cccccc" stroke-width="1.5" marker-end="url(#arrow-seq)"/>
+</g>
+<g class="nodes">
+<circle cx="100.5" cy="180" r="18" fill="#2a2a2a" stroke="#cccccc" stroke-width="1.5"/>
+<text x="100.5" y="214.4" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#eeeeee" text-anchor="middle">Order received</text>
+<rect x="24.5" y="275" width="152" height="50" rx="8" ry="8" fill="#2a2a2a" stroke="#cccccc" stroke-width="1.5"/>
+<text x="100.5" y="300" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#eeeeee" text-anchor="middle" dominant-baseline="middle">Check availability</text>
+<polygon points="100.5,395 125.5,420 100.5,445 75.5,420" fill="#2a2a2a" stroke="#cccccc" stroke-width="1.5"/>
+<text x="100.5" y="461.4" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#eeeeee" text-anchor="middle">Available?</text>
+<rect x="35" y="515" width="131" height="50" rx="8" ry="8" fill="#2a2a2a" stroke="#cccccc" stroke-width="1.5"/>
+<text x="100.5" y="540" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#eeeeee" text-anchor="middle" dominant-baseline="middle">Confirm order</text>
+<rect x="12" y="515" width="177" height="50" rx="8" ry="8" fill="#2a2a2a" stroke="#cccccc" stroke-width="1.5"/>
+<text x="100.5" y="540" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#eeeeee" text-anchor="middle" dominant-baseline="middle">Send rejection notice</text>
+<circle cx="100.5" cy="660" r="20" fill="#2a2a2a" stroke="#cccccc" stroke-width="2"/>
+<circle cx="100.5" cy="660" r="15" fill="none" stroke="#cccccc" stroke-width="1.5"/>
+<text x="100.5" y="696.4" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#eeeeee" text-anchor="middle">Process complete</text>
+</g>
+</svg>
