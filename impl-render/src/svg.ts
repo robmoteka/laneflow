@@ -68,8 +68,9 @@ function renderEdges(edges: LaidOutEdge[], theme: Theme): string {
   const out: string[] = ['<g class="edges">'];
   for (const e of edges) {
     const d = pointsToPath(e.points);
-    const dash = e.flowType === 'message' ? ' stroke-dasharray="6 4"' : '';
-    const marker = e.flowType === 'message' ? 'arrow-msg' : 'arrow-seq';
+    const renderAsMessage = e.flowType === 'message' && e.sourceShape !== 'gateway';
+    const dash = renderAsMessage ? ' stroke-dasharray="6 4"' : '';
+    const marker = renderAsMessage ? 'arrow-msg' : 'arrow-seq';
     out.push(
       `<path d="${d}" fill="none" stroke="${theme.edge}" stroke-width="1.5"${dash} marker-end="url(#${marker})"/>`,
     );

@@ -1,5 +1,5 @@
-import type { Document, Flow, NodeDecl, Direction } from '@laneflow/parser';
-import type { Box, Point } from './geometry.js';
+import type { Document, Flow, NodeDecl, Direction, Shape } from '@laneflow/parser';
+import type { Box, Point, Side } from './geometry.js';
 import {
   shapeSize,
   pickSides,
@@ -24,6 +24,7 @@ export interface LaidOutEdge {
   source: string;
   target: string;
   flowType: Flow['flowType'];
+  sourceShape: Shape;
   label: string | null;
   points: Point[];
   labelAnchor: Point | null;
@@ -132,20 +133,28 @@ export function layout(doc: Document, opts: LayoutOptions): Layout {
 
   const nodeById = new Map(nodes.map((n) => [n.id, n]));
 
-  const edges: LaidOutEdge[] = doc.flows.map((f) => {
+  const routings: Routing[] = doc.flows.map((f) => {
     const src = nodeById.get(f.source)!;
     const tgt = nodeById.get(f.target)!;
     const { fromSide, toSide } = pickSides(src.box, tgt.box, direction);
-    const from = anchorPoint(src.box, src.shape, fromSide);
-    const to = anchorPoint(tgt.box, tgt.shape, toSide);
-    const points = manhattanPath(from, to, fromSide, toSide);
+    return { flow: f, src, tgt, fromSide, toSide, fromT: 0.5, toT: 0.5 };
+  });
+
+  distributeAnchors(routings, 'in');
+  distributeAnchors(routings, 'out');
+
+  const edges: LaidOutEdge[] = routings.map((r) => {
+    const from = anchorPoint(r.src.box, r.src.shape, r.fromSide, r.fromT);
+    const to = anchorPoint(r.tgt.box, r.tgt.shape, r.toSide, r.toT);
+    const points = manhattanPath(from, to, r.fromSide, r.toSide);
     return {
-      source: f.source,
-      target: f.target,
-      flowType: f.flowType,
-      label: f.label,
+      source: r.flow.source,
+      target: r.flow.target,
+      flowType: r.flow.flowType,
+      sourceShape: r.src.shape,
+      label: r.flow.label,
       points,
-      labelAnchor: f.label ? midOfLongestSegment(points) : null,
+      labelAnchor: r.flow.label ? midOfLongestSegment(points) : null,
     };
   });
 
@@ -156,6 +165,51 @@ export function layout(doc: Document, opts: LayoutOptions): Layout {
     nodes,
     edges,
   };
+}
+
+interface Routing {
+  flow: Flow;
+  src: LaidOutNode;
+  tgt: LaidOutNode;
+  fromSide: Side;
+  toSide: Side;
+  fromT: number;
+  toT: number;
+}
+
+function distributeAnchors(routings: Routing[], end: 'in' | 'out'): void {
+  const groups = new Map<string, Routing[]>();
+  for (const r of routings) {
+    const node = end === 'in' ? r.tgt : r.src;
+    if (node.shape !== 'task') continue;
+    const side = end === 'in' ? r.toSide : r.fromSide;
+    const key = `${node.id}:${side}`;
+    let g = groups.get(key);
+    if (!g) {
+      g = [];
+      groups.set(key, g);
+    }
+    g.push(r);
+  }
+  for (const group of groups.values()) {
+    if (group.length < 2) continue;
+    const side = end === 'in' ? group[0].toSide : group[0].fromSide;
+    const horizontalSide = side === 'left' || side === 'right';
+    group.sort((a, b) => {
+      const otherA = end === 'in' ? a.src.box : a.tgt.box;
+      const otherB = end === 'in' ? b.src.box : b.tgt.box;
+      if (horizontalSide) {
+        return otherA.y + otherA.height / 2 - (otherB.y + otherB.height / 2);
+      }
+      return otherA.x + otherA.width / 2 - (otherB.x + otherB.width / 2);
+    });
+    const n = group.length;
+    group.forEach((r, i) => {
+      const t = (i + 1) / (n + 1);
+      if (end === 'in') r.toT = t;
+      else r.fromT = t;
+    });
+  }
 }
 
 function computeColumns(doc: Document): Map<string, number> {

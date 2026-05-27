@@ -95,6 +95,16 @@ The arrow head is a filled triangle (12 px long, 6 px wide at the
 base) for sequence flow, and an open (stroke-only) triangle of the
 same dimensions for message flow.
 
+**Gateway override.** Every edge that leaves a gateway is rendered as
+sequence flow (solid line, filled arrow head) regardless of whether
+the parser classified it as message flow. A gateway is a control-flow
+decision: its branches describe which path the process takes, not a
+hand-off between participants. Drawing a `yes`/`no` branch with a
+dashed line would conflict with the BPMN convention where dashed means
+message flow, so the renderer steps in and visually treats gateway
+branches as sequence flow. The semantic classification in the
+`Document` is unchanged; only the stroke style is.
+
 ### Routing
 
 Edges are routed as orthogonal L-shapes ("Manhattan" routing):
@@ -110,6 +120,18 @@ This routing intentionally does **not** detect or avoid collisions
 with other nodes. Diagrams that produce ugly overlaps are a signal
 that the source document is too dense for a single column layout;
 the renderer reports nothing in this case.
+
+**Distributed anchors.** When several edges share the same side of
+the same task node (typically, multiple incoming edges into a single
+join point), the renderer distributes their anchor points evenly
+along the side instead of stacking them on the midpoint. For `N`
+edges entering through a given side, anchor `i` (0-indexed, sorted
+by source position along the perpendicular axis) sits at
+`(i + 1) / (N + 1)` of the side's length, with 8 px padding from
+each corner. The same rule applies to the source side when multiple
+edges leave through a single side. Events, end events, and gateways
+keep their fixed mid-side anchors because they rarely accumulate
+multiple connections on one side.
 
 ### Edge labels
 

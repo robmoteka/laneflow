@@ -51,7 +51,7 @@ export function shapeSize(shape: Shape, label: string, fontSize: number): Size {
 
 export type Side = 'top' | 'right' | 'bottom' | 'left';
 
-export function anchorPoint(box: Box, shape: Shape, side: Side): Point {
+export function anchorPoint(box: Box, shape: Shape, side: Side, t: number = 0.5): Point {
   const cx = box.x + box.width / 2;
   const cy = box.y + box.height / 2;
 
@@ -76,11 +76,15 @@ export function anchorPoint(box: Box, shape: Shape, side: Side): Point {
     }
   }
 
+  const padX = 8;
+  const padY = 8;
+  const lerpX = box.x + padX + (box.width - 2 * padX) * t;
+  const lerpY = box.y + padY + (box.height - 2 * padY) * t;
   switch (side) {
-    case 'top': return { x: cx, y: box.y };
-    case 'bottom': return { x: cx, y: box.y + box.height };
-    case 'left': return { x: box.x, y: cy };
-    case 'right': return { x: box.x + box.width, y: cy };
+    case 'top': return { x: lerpX, y: box.y };
+    case 'bottom': return { x: lerpX, y: box.y + box.height };
+    case 'left': return { x: box.x, y: lerpY };
+    case 'right': return { x: box.x + box.width, y: lerpY };
   }
 }
 
