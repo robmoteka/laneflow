@@ -1,0 +1,76 @@
+name: RFC proposal
+description: Propose an addition or change to the LaneFlow standard.
+title: "[RFC] <short title>"
+labels: ["rfc"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before opening an RFC, check:
+        - Is this feature already in the spec?
+        - Is it explicitly listed as a non-goal in SPEC.md §7?
+        - Has a similar RFC been proposed and closed?
+
+        If the answer to all three is "no", fill in the sections below.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / motivation
+      description: |
+        What real process-modelling problem are you trying to solve?
+        What is hard or impossible to express in LaneFlow v0.1 today?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: |
+        Describe the syntax change or new feature.
+        Include at least one concrete `.laneflow` example showing the new syntax.
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: What other approaches did you think about? Why did you prefer this one?
+    validations:
+      required: true
+
+  - type: textarea
+    id: principles
+    attributes:
+      label: Impact on design principles
+      description: |
+        LaneFlow values regularity, unambiguity, and LLM-friendliness above brevity.
+        Explain how your proposal interacts with these principles.
+        If it adds a second way to write something, justify why the benefit outweighs the cost.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Proposed target version
+      options:
+        - v0.1 (current draft — must be very small)
+        - v0.2
+        - v1.0
+        - Future (no specific version)
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have read SPEC.md §7 (non-goals) and this RFC does not duplicate a listed item.
+          required: true
+        - label: I have read CONTRIBUTING.md and understand the RFC process.
+          required: true

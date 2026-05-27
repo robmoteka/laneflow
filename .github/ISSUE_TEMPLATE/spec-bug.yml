@@ -1,0 +1,61 @@
+name: Spec bug
+description: Report an ambiguity, contradiction, or missing case in the LaneFlow specification.
+title: "[Spec bug] <short description>"
+labels: ["spec-bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for bugs **in the specification itself** — ambiguities,
+        contradictions between sections, missing error cases, or examples that
+        do not match the described behaviour.
+
+        For proposals to add or change language features, use the RFC template instead.
+
+  - type: input
+    id: spec_section
+    attributes:
+      label: Affected section
+      description: Which section(s) of SPEC.md are affected?
+      placeholder: "e.g. §3.5 Flow section"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: |
+        Describe the ambiguity, contradiction, or gap. Be as specific as possible.
+        Quote the relevant sentences from the spec.
+    validations:
+      required: true
+
+  - type: textarea
+    id: snippet
+    attributes:
+      label: Minimal .laneflow snippet (if applicable)
+      description: The smallest document that demonstrates the problem.
+      render: text
+    validations:
+      required: false
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+      description: What should the spec say or require?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - Ambiguous (two valid interpretations)
+        - Contradictory (two sections disagree)
+        - Incomplete (unspecified input)
+        - Editorial (typo, broken link, unclear wording)
+    validations:
+      required: true

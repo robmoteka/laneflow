@@ -1,0 +1,15 @@
+laneflow v0.1
+
+# Example 01 — Linear process, single lane.
+# All flows are sequence flows (intra-lane, solid arrows).
+# Teaches: header, lane declaration, four shape types, plain arrows.
+
+lane Sales "Sales"
+
+Sales: start    (Order received)
+Sales: verify   [Verify order details]
+Sales: confirm  [Confirm order with customer]
+Sales: send     [Send confirmation email]
+Sales: done     ((Order confirmed))
+
+start --> verify --> confirm --> send --> done

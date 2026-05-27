@@ -1,0 +1,33 @@
+laneflow v0.1
+
+# Example 03 — Three lanes with message flow.
+# Teaches: multiple lanes, cross-lane arrows (auto-classified as message flow),
+#          lane display labels, mixed sequence and message flow in one diagram.
+#
+# Sequence flows (same lane, solid line):
+#   start --> check, check --> decide, reject --> done,
+#   pack --> ship, invoice --> done
+#
+# Message flows (cross-lane, dashed line):
+#   decide --> pack, pack --> invoice, ship --> done
+
+lane Sales      "Sales"
+lane Warehouse  "Warehouse"
+lane Finance    "Finance"
+
+Sales:     start    (Order received)
+Sales:     check    [Check availability]
+Sales:     decide   <In stock?>
+Sales:     reject   [Notify customer: unavailable]
+Warehouse: pack     [Pack order]
+Warehouse: ship     [Ship to customer]
+Finance:   invoice  [Issue invoice]
+Finance:   done     ((Order closed))
+
+start --> check --> decide
+decide -- no  --> reject --> done
+decide -- yes --> pack
+pack --> ship
+pack --> invoice
+ship --> done
+invoice --> done

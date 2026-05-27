@@ -1,0 +1,18 @@
+laneflow v0.1
+direction LR
+
+# Example 02 — Decision gateway in a single lane.
+# Teaches: gateway shape, labeled arrows, multiple paths to end event.
+
+lane Sales "Sales"
+
+Sales: start    (Order received)
+Sales: check    [Check availability]
+Sales: decide   <Available?>
+Sales: confirm  [Confirm order]
+Sales: reject   [Send rejection notice]
+Sales: done     ((Process complete))
+
+start --> check --> decide
+decide -- yes --> confirm --> done
+decide -- no  --> reject  --> done
