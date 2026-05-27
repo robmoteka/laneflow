@@ -40,14 +40,15 @@ The layout engine is a simple grid:
 - Within a lane, the column index is treated as a slot; the cell's
   centerline is the anchor for the node.
 
-Cell sizes are fixed per direction. The renderer adjusts task widths
-to fit labels (see "Label metrics"), but does not shrink cells below
-the defaults.
+Cell sizes are uniform across the diagram. The renderer starts from a
+default and grows the cell width to `max(default, widest task + 24)`
+so every task fits its label without overflowing into a neighboring
+cell. Cell height stays at the default.
 
-| Direction | Cell width | Cell height |
-|-----------|------------|-------------|
-| TB        | 180 px     | 100 px      |
-| LR        | 200 px     | 120 px      |
+| Direction | Default cell width | Cell height |
+|-----------|--------------------|-------------|
+| TB        | 180 px             | 100 px      |
+| LR        | 200 px             | 120 px      |
 
 ## Lane bands
 
