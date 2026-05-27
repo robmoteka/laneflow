@@ -1,0 +1,104 @@
+---
+name: laneflow
+description: Generate or review LaneFlow process diagrams. Use when the user asks to "create a LaneFlow", "convert this process to a diagram", "draw a swimlane diagram", or pastes a .laneflow document for review. Subcommands "generate" (default) and "review".
+---
+
+# LaneFlow skill
+
+You are helping the user work with LaneFlow — a text-based notation
+for process diagrams with swimlanes. This skill has two modes.
+
+Determine the mode from the user's arguments:
+
+- If the user passes `generate` (or no subcommand) plus a description
+  → **generate mode**.
+- If the user passes `review` and either references a file or pastes
+  LaneFlow content → **review mode**.
+
+In both modes, you MUST follow the rules in `ai/AUTHORING_GUIDE.md` and
+avoid the mistakes catalogued in `ai/error-recovery.md` in this
+repository. Read those files before producing output if you have not
+already.
+
+---
+
+## Generate mode
+
+The user supplies a natural-language description of a process. You
+produce a valid LaneFlow document.
+
+Procedure:
+
+1. Read `ai/AUTHORING_GUIDE.md` (the seven-step generation procedure).
+2. Skim `ai/few-shot/01-linear-from-text.md`,
+   `ai/few-shot/02-gateway-from-text.md`, and
+   `ai/few-shot/03-multilane-from-text.md` to ground yourself in the
+   target syntax.
+3. If the source is incomplete or ambiguous, also skim
+   `ai/few-shot/05-ambiguous-source.md` and use `#` comments to
+   record any assumptions you have to make.
+4. Generate the document, applying the seven-step procedure.
+5. Run the self-check in §2 step 7 of the authoring guide before
+   returning your answer.
+
+Output format:
+
+- A single fenced code block with the `laneflow` language tag,
+  containing the document.
+- Above the code block, one short sentence describing what the
+  diagram represents.
+- Below the code block (optional, only if relevant), a short bullet
+  list of assumptions you had to make. Match each bullet to the
+  corresponding `# assumption: ...` comment in the document.
+
+If the user pointed at a specific path (e.g. "save it to
+`examples/foo.laneflow`"), write the file with the Write tool
+**after** showing the content in chat.
+
+---
+
+## Review mode
+
+The user provides an existing LaneFlow document (file path or pasted
+content) and asks for problems and improvements.
+
+Procedure:
+
+1. Read the document.
+2. Read `ai/error-recovery.md` and use it as a checklist.
+3. Check, in this order:
+   - **Syntax.** Header present? Section order correct? Lanes
+     declared? Node ids unique? Flow endpoints valid?
+   - **Semantics.** Every gateway branch reaches an end event? Any
+     orphan or unreachable nodes? Cross-lane flows that make sense
+     as messages?
+   - **Style.** Aligned columns, labeled gateway branches, comments
+     on assumptions, sensible lane order.
+
+Output format:
+
+A numbered list of findings. Each finding has:
+
+- The affected line number(s) or section.
+- A short statement of the problem.
+- The concrete fix as a code snippet or before/after pair.
+
+If you find no problems, say so explicitly and (optionally) suggest
+one or two stylistic improvements.
+
+If asked to apply the fixes (e.g. "fix them"), use the Edit tool to
+update the file.
+
+---
+
+## What to avoid
+
+- Do not invent syntax that is not in `SPEC.md`. Common inventions
+  that are **wrong**: `flowchart`, `subgraph`, `participant`, pipe
+  labels `|label|`, dashed arrows `..>`, parallel gateway `<<text>>`.
+- Do not silently invent process steps that have no basis in the
+  source. Use `#` comments to record any guesses.
+- Do not put lanes before the header or nodes before lanes — the
+  section order is fixed.
+- Do not classify arrows manually as sequence or message flow. The
+  parser does that; you always emit `-->`.
