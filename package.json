@@ -1,0 +1,16 @@
+{
+  "name": "laneflow-monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Root scripts for the LaneFlow monorepo. Not published. Each package under impl/ and impl-render/ is published independently.",
+  "scripts": {
+    "setup": "npm --prefix impl install && npm --prefix impl run build && npm --prefix impl-render install && npm --prefix impl-render run build",
+    "build": "npm --prefix impl run build && npm --prefix impl-render run build",
+    "test": "npm --prefix impl test && npm --prefix impl-render test",
+    "clean": "rm -rf impl/dist impl/node_modules impl-render/dist impl-render/node_modules"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}

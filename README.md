@@ -188,6 +188,57 @@ guide, reference parser, and reference renderer.
 
 ---
 
+## Using LaneFlow in another project
+
+Until `@laneflow/parser` and `@laneflow/renderer` are published to npm,
+the recommended way to consume them from another project is as a git
+submodule with `file:` dependencies. This is the same shape the
+packages will eventually have on the registry, so the integration code
+in the host project does not change after publication.
+
+In the host project:
+
+```sh
+git submodule add https://github.com/robmoteka/laneflow.git vendor/laneflow
+```
+
+In the host project's `package.json`:
+
+```json
+{
+  "dependencies": {
+    "@laneflow/parser":   "file:vendor/laneflow/impl",
+    "@laneflow/renderer": "file:vendor/laneflow/impl-render"
+  },
+  "scripts": {
+    "postinstall": "npm --prefix vendor/laneflow run setup"
+  }
+}
+```
+
+The `postinstall` step runs the root `setup` script in this
+repository, which installs and builds both packages. After
+`npm install` in the host project, `@laneflow/parser` and
+`@laneflow/renderer` resolve normally:
+
+```ts
+import { parse } from '@laneflow/parser';
+import { renderToSvg } from '@laneflow/renderer';
+
+const { document, errors } = parse(source);
+if (errors.length > 0) throw new Error('invalid LaneFlow');
+const svg = renderToSvg(document);
+```
+
+To update LaneFlow in the host project later:
+
+```sh
+git submodule update --remote vendor/laneflow
+npm install
+```
+
+---
+
 ## Contributing
 
 LaneFlow is intentionally small. Changes to the standard go through a
