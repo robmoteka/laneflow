@@ -11,6 +11,17 @@ and the versioning policy described in `CONTRIBUTING.md`.
 
 Work in progress toward v0.1 final.
 
+### Changed — Roadmap clarified, PDF pipeline declared non-goal
+
+- `README.md` roadmap reflects the actual state of v0.1: specification,
+  AI authoring materials, and reference parser are all `done`. The
+  previously planned "Step 3 — PDF → LaneFlow" is removed from the
+  roadmap and reframed as an explicit **non-goal**: process diagrams
+  should be authored or verified by a human, not generated
+  end-to-end from PDFs without review.
+- Visual rendering is also called out as a non-goal of this
+  repository.
+
 ### Added — Reference parser (`impl/`)
 
 - TypeScript reference parser at `impl/` (`@laneflow/parser`, package

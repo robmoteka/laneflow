@@ -152,24 +152,34 @@ LICENSE-CODE             MIT (source code under impl/ and future code)
 
 ## Roadmap
 
-LaneFlow is being built in three steps. **Only Step 1 is in scope for this
-repository right now.**
+LaneFlow v0.1 is complete: a published specification, an LLM authoring
+guide, and a reference TypeScript parser.
 
-- **Step 1 — Specification (done).** Lock down the v0.1 syntax,
-  publish the spec and worked examples, set up the RFC process. No code.
+- **Step 1 — Specification (done).** Locked down the v0.1 syntax,
+  published the spec and worked examples, set up the RFC process.
 - **Step 2 — AI authoring guide (done).** Materials that let
   assistants like Claude Code reliably generate and read LaneFlow:
   authoring guide, condensed system prompt, error-recovery catalog,
   five few-shot examples, and a Claude Code skill. See `ai/` and
   `.claude/skills/laneflow/`.
-- **Step 3 — PDF → LaneFlow.** Guidance for tooling that extracts a
-  process description from a PDF and produces a valid LaneFlow document.
+- **Reference parser (done).** TypeScript implementation at
+  [`impl/`](impl/) — `parse()` / `validate()` API plus a `laneflow`
+  CLI. MIT-licensed, zero runtime dependencies. The specification
+  itself stays under CC BY 4.0 regardless of the implementation
+  license.
 
-A reference parser lives under [`impl/`](impl/) (TypeScript, MIT,
-zero runtime dependencies). It exposes a `parse()` function and a
-`laneflow` CLI for validating and inspecting `.laneflow` files. The
-specification itself stays under CC BY 4.0 regardless of the
-implementation license.
+### Non-goals
+
+- **Automated PDF → LaneFlow extraction.** Process diagrams should be
+  authored or verified by a human. The recommended workflow is: a
+  human reads the source document (PDF, SOP, regulation), pastes the
+  relevant passage into an AI assistant configured with the
+  `/laneflow` skill, reviews the generated diagram, and commits it.
+  An end-to-end PDF pipeline would produce unreviewed output that no
+  one is accountable for; we deliberately do not provide one.
+- **Visual rendering.** This repository contains no renderer. Any
+  conforming renderer may visualize a LaneFlow document — see
+  `SPEC.md` §8 for the conformance contract.
 
 ---
 
