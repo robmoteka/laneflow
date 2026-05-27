@@ -138,6 +138,8 @@ SPEC.md                  Formal specification (normative)
 docs/grammar.ebnf        Grammar — source of truth for syntax
 docs/DESIGN_DECISIONS.md ADR-style log of why the syntax is what it is
 examples/                Worked .laneflow examples
+ai/                      Materials for LLM-based assistants
+.claude/skills/laneflow/ Claude Code skill (generate / review)
 CONTRIBUTING.md          How to propose changes (RFC process)
 CODE_OF_CONDUCT.md       Community standards
 CHANGELOG.md             Versioned spec history
@@ -151,11 +153,13 @@ LICENSE                  CC BY 4.0 (specification & docs)
 LaneFlow is being built in three steps. **Only Step 1 is in scope for this
 repository right now.**
 
-- **Step 1 — Specification (current).** Lock down the v0.1 syntax,
+- **Step 1 — Specification (done).** Lock down the v0.1 syntax,
   publish the spec and worked examples, set up the RFC process. No code.
-- **Step 2 — AI authoring guide.** Materials that let assistants like
-  Claude Code reliably generate and read LaneFlow: an instruction sheet,
-  a skill, few-shot examples, error-recovery patterns.
+- **Step 2 — AI authoring guide (done).** Materials that let
+  assistants like Claude Code reliably generate and read LaneFlow:
+  authoring guide, condensed system prompt, error-recovery catalog,
+  five few-shot examples, and a Claude Code skill. See `ai/` and
+  `.claude/skills/laneflow/`.
 - **Step 3 — PDF → LaneFlow.** Guidance for tooling that extracts a
   process description from a PDF and produces a valid LaneFlow document.
 
