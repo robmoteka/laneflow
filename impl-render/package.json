@@ -1,0 +1,41 @@
+{
+  "name": "@laneflow/renderer",
+  "version": "0.2.0-draft",
+  "description": "Reference renderer for the LaneFlow notation (v0.2). Emits SVG and PNG from a parsed LaneFlow Document.",
+  "type": "module",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "laneflow-render": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "RENDERER.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "cli": "node dist/cli.js"
+  },
+  "dependencies": {
+    "@laneflow/parser": "file:../impl",
+    "@resvg/resvg-js": "^2.6.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "vitest": "^1.4.0",
+    "@types/node": "^20.11.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
