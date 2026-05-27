@@ -1,6 +1,6 @@
 {
   "name": "@laneflow/parser",
-  "version": "0.1.0-draft",
+  "version": "0.1.0",
   "description": "Reference parser for the LaneFlow notation (v0.1).",
   "type": "module",
   "license": "MIT",
