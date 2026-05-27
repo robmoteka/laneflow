@@ -57,16 +57,12 @@ export function anchorPoint(box: Box, shape: Shape, side: Side, t: number = 0.5)
 
   if (shape === 'event' || shape === 'endEvent') {
     const r = shape === 'event' ? EVENT_RADIUS : END_EVENT_OUTER_RADIUS;
-    const angleRange = Math.PI / 3;
-    let baseAngle: number;
     switch (side) {
-      case 'top': baseAngle = -Math.PI / 2; break;
-      case 'bottom': baseAngle = Math.PI / 2; break;
-      case 'left': baseAngle = Math.PI; break;
-      case 'right': baseAngle = 0; break;
+      case 'top': return { x: cx, y: cy - r };
+      case 'bottom': return { x: cx, y: cy + r };
+      case 'left': return { x: cx - r, y: cy };
+      case 'right': return { x: cx + r, y: cy };
     }
-    const angle = baseAngle + (t - 0.5) * angleRange;
-    return { x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) };
   }
 
   if (shape === 'gateway') {

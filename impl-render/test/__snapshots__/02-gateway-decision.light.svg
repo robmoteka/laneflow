@@ -21,11 +21,11 @@
 <path d="M 100.5 445 L 100.5 515" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow-seq)"/>
 <rect x="86.06" y="472" width="28.879999999999995" height="16" fill="#ffffff"/>
 <text x="100.5" y="480" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#111111" text-anchor="middle" dominant-baseline="middle">yes</text>
-<path d="M 100.5 565 L 100.5 602.651922469878 L 97.0270364466614 602.651922469878 L 97.0270364466614 640.3038449397559" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow-seq)"/>
+<path d="M 100.5 565 L 100.5 640" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow-seq)"/>
 <path d="M 100.5 445 L 100.5 515" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow-seq)"/>
 <rect x="89.54" y="472" width="21.919999999999998" height="16" fill="#ffffff"/>
 <text x="100.5" y="480" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#111111" text-anchor="middle" dominant-baseline="middle">no</text>
-<path d="M 100.5 565 L 100.5 602.651922469878 L 103.9729635533386 602.651922469878 L 103.9729635533386 640.3038449397559" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow-seq)"/>
+<path d="M 100.5 565 L 100.5 640" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow-seq)"/>
 </g>
 <g class="nodes">
 <circle cx="100.5" cy="180" r="18" fill="#ffffff" stroke="#333333" stroke-width="1.5"/>
