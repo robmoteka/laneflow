@@ -38,8 +38,14 @@ Procedure:
    `ai/few-shot/05-ambiguous-source.md` and use `#` comments to
    record any assumptions you have to make.
 4. Generate the document, applying the seven-step procedure.
-5. Run the self-check in §2 step 7 of the authoring guide before
-   returning your answer.
+5. Run the self-check in §2 step 7 of the authoring guide.
+6. **Validate with the reference parser.** Write the candidate to a
+   temporary file (or directly to the target path if the user
+   specified one) and run
+   `node impl/dist/cli.js validate <path>`. If the build does not
+   exist yet, run `npm --prefix impl install && npm --prefix impl run build`
+   first. If the parser reports errors, fix them and re-validate.
+   Do not return until the parser exits 0.
 
 Output format:
 
@@ -65,8 +71,13 @@ content) and asks for problems and improvements.
 Procedure:
 
 1. Read the document.
-2. Read `ai/error-recovery.md` and use it as a checklist.
-3. Check, in this order:
+2. Run the reference parser:
+   `node impl/dist/cli.js validate <path>`. Capture its output. Each
+   reported `LF***` code is a definitive syntax problem; report those
+   first.
+3. Read `ai/error-recovery.md` and use it as a checklist for problems
+   the parser does not catch (semantic and stylistic issues).
+4. Check, in this order:
    - **Syntax.** Header present? Section order correct? Lanes
      declared? Node ids unique? Flow endpoints valid?
    - **Semantics.** Every gateway branch reaches an end event? Any

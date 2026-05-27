@@ -138,12 +138,14 @@ SPEC.md                  Formal specification (normative)
 docs/grammar.ebnf        Grammar — source of truth for syntax
 docs/DESIGN_DECISIONS.md ADR-style log of why the syntax is what it is
 examples/                Worked .laneflow examples
+impl/                    Reference parser (TypeScript, MIT)
 ai/                      Materials for LLM-based assistants
 .claude/skills/laneflow/ Claude Code skill (generate / review)
 CONTRIBUTING.md          How to propose changes (RFC process)
 CODE_OF_CONDUCT.md       Community standards
 CHANGELOG.md             Versioned spec history
 LICENSE                  CC BY 4.0 (specification & docs)
+LICENSE-CODE             MIT (source code under impl/ and future code)
 ```
 
 ---
@@ -163,9 +165,11 @@ repository right now.**
 - **Step 3 — PDF → LaneFlow.** Guidance for tooling that extracts a
   process description from a PDF and produces a valid LaneFlow document.
 
-When LaneFlow gains a reference parser, it will live in this repository
-under an `impl/` (or similar) directory and ship under the MIT license.
-The specification itself stays under CC BY 4.0 regardless.
+A reference parser lives under [`impl/`](impl/) (TypeScript, MIT,
+zero runtime dependencies). It exposes a `parse()` function and a
+`laneflow` CLI for validating and inspecting `.laneflow` files. The
+specification itself stays under CC BY 4.0 regardless of the
+implementation license.
 
 ---
 

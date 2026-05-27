@@ -11,6 +11,20 @@ and the versioning policy described in `CONTRIBUTING.md`.
 
 Work in progress toward v0.1 final.
 
+### Added — Reference parser (`impl/`)
+
+- TypeScript reference parser at `impl/` (`@laneflow/parser`, package
+  version `0.1.0-draft`). Pure ESM, zero runtime dependencies.
+- Public API: `parse(source)` returning `{ document, errors }`,
+  `validate(source)` shortcut, and exported type definitions.
+- CLI: `laneflow validate <file>` and `laneflow parse <file> [--json]`.
+- Test suite (Vitest, 37 tests): happy paths for the four shapes and
+  arrow forms; one test per error code from SPEC §5; conformance check
+  that every file in `examples/` parses cleanly.
+- `LICENSE-CODE` added to the repository root with the MIT license that
+  covers `impl/` and future source code (the specification stays under
+  CC BY 4.0).
+
 ### Added — AI authoring materials (Step 2)
 
 - `ai/AUTHORING_GUIDE.md` — long-form guide for LLM-based assistants:
