@@ -88,3 +88,18 @@ the full error catalog), point your LLM at `ai/AUTHORING_GUIDE.md` and
 - When using prompt caching (Claude API, OpenAI cached input), put
   this system prompt and the few-shot examples in the cached prefix.
   Per-request input is just the source process description.
+
+## Validation loop
+
+If your application has access to the LaneFlow reference parser
+(`@laneflow/parser`, see `impl/`), use it. Generation quality improves
+dramatically when the LLM gets parser output as feedback:
+
+1. Generate a candidate LaneFlow document.
+2. Run `parse(source)`. If `errors` is empty, return.
+3. Otherwise, send the document plus the list of `ParseError` entries
+   (with code, line, message) back to the model and ask it to fix
+   them. One or two rounds typically suffice.
+
+Expose the error codes verbatim; the model has been instructed in
+`ai/error-recovery.md` to recognise them.

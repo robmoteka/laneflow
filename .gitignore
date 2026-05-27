@@ -9,11 +9,12 @@ Thumbs.db
 *.swo
 *~
 
-# Node (for future parser/renderer)
+# Node
 node_modules/
 dist/
 build/
 *.tgz
+*.tsbuildinfo
 package-lock.json
 
 # Python (for future tooling)
