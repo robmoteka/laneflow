@@ -26,10 +26,10 @@ export function renderSvg(lay: Layout, theme: Theme): string {
 function defs(theme: Theme): string {
   return [
     '<defs>',
-    `<marker id="arrow-seq" viewBox="0 0 12 6" refX="11" refY="3" markerWidth="12" markerHeight="6" orient="auto-start-reverse">`,
+    `<marker id="arrow-seq" viewBox="0 0 12 6" refX="11" refY="3" markerWidth="12" markerHeight="6" orient="auto">`,
     `<path d="M 0 0 L 12 3 L 0 6 z" fill="${theme.edge}"/>`,
     '</marker>',
-    `<marker id="arrow-msg" viewBox="0 0 12 6" refX="11" refY="3" markerWidth="12" markerHeight="6" orient="auto-start-reverse">`,
+    `<marker id="arrow-msg" viewBox="0 0 12 6" refX="11" refY="3" markerWidth="12" markerHeight="6" orient="auto">`,
     `<path d="M 0 0 L 12 3 L 0 6 z" fill="none" stroke="${theme.edge}" stroke-width="1"/>`,
     '</marker>',
     '</defs>',
