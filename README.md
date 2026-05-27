@@ -3,8 +3,8 @@
 > A lightweight, text-based notation for process diagrams **with lanes**.
 > Think Mermaid, but designed from the ground up for swimlanes.
 
-**Status:** v0.1 — Draft specification. No parser/renderer yet.
-**License:** Specification under [CC BY 4.0](LICENSE). Future code will be MIT.
+**Status:** v0.2 — Stable specification, reference parser, and reference renderer.
+**License:** Specification under [CC BY 4.0](LICENSE). Code under [MIT](LICENSE-CODE).
 
 ---
 
@@ -139,6 +139,7 @@ docs/grammar.ebnf        Grammar — source of truth for syntax
 docs/DESIGN_DECISIONS.md ADR-style log of why the syntax is what it is
 examples/                Worked .laneflow examples
 impl/                    Reference parser (TypeScript, MIT)
+impl-render/             Reference renderer (TypeScript, MIT)
 ai/                      Materials for LLM-based assistants
 .claude/skills/laneflow/ Claude Code skill (generate / review)
 CONTRIBUTING.md          How to propose changes (RFC process)
@@ -152,8 +153,8 @@ LICENSE-CODE             MIT (source code under impl/ and future code)
 
 ## Roadmap
 
-LaneFlow v0.1 is complete: a published specification, an LLM authoring
-guide, and a reference TypeScript parser.
+LaneFlow v0.2 is complete: published specification, LLM authoring
+guide, reference parser, and reference renderer.
 
 - **Step 1 — Specification (done).** Locked down the v0.1 syntax,
   published the spec and worked examples, set up the RFC process.
@@ -167,6 +168,13 @@ guide, and a reference TypeScript parser.
   CLI. MIT-licensed, zero runtime dependencies. The specification
   itself stays under CC BY 4.0 regardless of the implementation
   license.
+- **Reference renderer (done, v0.2).** TypeScript implementation at
+  [`impl-render/`](impl-render/) — `renderToSvg()` / `renderToPng()`
+  API plus a `laneflow-render` CLI. Light and dark themes, both
+  directions, SVG and PNG output. Visual conventions are
+  non-normative (see [`impl-render/RENDERER.md`](impl-render/RENDERER.md));
+  any other renderer may visualize a LaneFlow document differently
+  while preserving its semantics.
 
 ### Non-goals
 
@@ -177,9 +185,6 @@ guide, and a reference TypeScript parser.
   `/laneflow` skill, reviews the generated diagram, and commits it.
   An end-to-end PDF pipeline would produce unreviewed output that no
   one is accountable for; we deliberately do not provide one.
-- **Visual rendering.** This repository contains no renderer. Any
-  conforming renderer may visualize a LaneFlow document — see
-  `SPEC.md` §8 for the conformance contract.
 
 ---
 

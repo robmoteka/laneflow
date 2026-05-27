@@ -13,6 +13,41 @@ _No unreleased changes._
 
 ---
 
+## [v0.2] — 2026-05-27
+
+Adds a reference renderer alongside the parser. The specification text
+itself is unchanged — visual conventions stay non-normative so that
+multiple renderers can coexist with different styles.
+
+### Added — Reference renderer (`impl-render/`)
+
+- TypeScript reference renderer at `impl-render/` (`@laneflow/renderer`,
+  package version `0.2.0-draft`). Pure ESM, depends on
+  `@laneflow/parser` and `@resvg/resvg-js`.
+- Public API: `renderToSvg(input, options)` returning an SVG string and
+  `renderToPng(input, options)` returning a `Uint8Array`. Both accept a
+  LaneFlow source string or a parsed `Document`.
+- CLI: `laneflow-render render <file> [-o out.svg|out.png] [--theme light|dark] [--direction TB|LR] [--scale N]`.
+- Pure-TypeScript grid layout: lanes are bands, columns are derived
+  from a topological ordering over sequence flows only. Cells grow
+  uniformly to fit the widest task label. Orthogonal Manhattan edge
+  routing. Per-character label width estimator (no font engine).
+- Two themes (`light`, `dark`); two directions (`TB`, `LR`); two flow
+  types rendered differently (solid + filled arrow for sequence flow,
+  dashed + open arrow for message flow).
+- Visual conventions documented in `impl-render/RENDERER.md`
+  (non-normative).
+- Test suite (Vitest, 18 tests): layout invariants, file-based SVG
+  snapshots for every example in both themes, PNG smoke checks.
+
+### Scope clarifications
+
+- `README.md` "Non-goals" no longer lists visual rendering — that
+  capability now ships at `impl-render/`. The non-goal on automated
+  PDF → LaneFlow extraction stands.
+
+---
+
 ## [v0.1] — 2026-05-27
 
 First public release. The standard is feature-complete for v0.1 as

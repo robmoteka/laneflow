@@ -1,12 +1,12 @@
 ---
 name: laneflow
-description: Generate or review LaneFlow process diagrams. Use when the user asks to "create a LaneFlow", "convert this process to a diagram", "draw a swimlane diagram", or pastes a .laneflow document for review. Subcommands "generate" (default) and "review".
+description: Generate, review, or render LaneFlow process diagrams. Use when the user asks to "create a LaneFlow", "convert this process to a diagram", "draw a swimlane diagram", pastes a .laneflow document for review, or asks for an SVG/PNG of an existing LaneFlow file. Subcommands "generate" (default), "review", and "render".
 ---
 
 # LaneFlow skill
 
 You are helping the user work with LaneFlow — a text-based notation
-for process diagrams with swimlanes. This skill has two modes.
+for process diagrams with swimlanes. This skill has three modes.
 
 Determine the mode from the user's arguments:
 
@@ -14,6 +14,8 @@ Determine the mode from the user's arguments:
   → **generate mode**.
 - If the user passes `review` and either references a file or pastes
   LaneFlow content → **review mode**.
+- If the user passes `render` and references a `.laneflow` file
+  → **render mode**.
 
 In both modes, you MUST follow the rules in `ai/AUTHORING_GUIDE.md` and
 avoid the mistakes catalogued in `ai/error-recovery.md` in this
@@ -99,6 +101,36 @@ one or two stylistic improvements.
 
 If asked to apply the fixes (e.g. "fix them"), use the Edit tool to
 update the file.
+
+---
+
+## Render mode
+
+The user has an existing `.laneflow` file and wants an SVG or PNG.
+
+Procedure:
+
+1. Validate the document first with the parser:
+   `node impl/dist/cli.js validate <path>`. Do not render an invalid
+   document — fix the syntax issues first (drop into review mode if
+   the user wants you to).
+2. If the renderer build does not exist, run
+   `npm --prefix impl-render install && npm --prefix impl-render run build`.
+3. Render with the renderer CLI:
+   `node impl-render/dist/cli.js render <path> -o <out>`.
+   - Use `.svg` output by default. Only emit PNG if the user asked
+     for an image embedded somewhere that cannot consume SVG.
+   - Pass `--theme dark` only if the user asked for a dark
+     diagram.
+   - Pass `--direction TB|LR` only to override the document's
+     direction at the user's request.
+4. Report the output path. If the user has not specified one, write
+   the file next to the source with a matching basename (e.g.
+   `diagram.laneflow` → `diagram.svg`).
+
+Do not attempt to render documents that the parser rejects. The
+renderer assumes a valid `Document` and will produce garbage or
+throw on broken input.
 
 ---
 
