@@ -43,6 +43,13 @@ pack  --> done
 `Sales: check --> pack` crosses a lane boundary, so the parser classifies
 it as a **message flow** automatically. The author never declares it.
 
+Rendered with the reference renderer (`@laneflow/renderer`, v0.2):
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/readme-hero-dark.svg">
+  <img alt="LaneFlow rendering of a two-lane Sales/Warehouse order process" src="docs/images/readme-hero-light.svg">
+</picture>
+
 ### Before / after
 
 A three-lane order process in Mermaid (workaround with `subgraph`):
