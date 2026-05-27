@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="200" viewBox="0 0 480 200">
+<defs>
+<marker id="arrow-seq" viewBox="0 0 12 6" refX="11" refY="3" markerWidth="12" markerHeight="6" orient="auto">
+<path d="M 0 0 L 12 3 L 0 6 z" fill="#cccccc"/>
+</marker>
+<marker id="arrow-msg" viewBox="0 0 12 6" refX="11" refY="3" markerWidth="12" markerHeight="6" orient="auto">
+<path d="M 0 0 L 12 3 L 0 6 z" fill="none" stroke="#cccccc" stroke-width="1"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="480" height="200" fill="#1a1a1a"/>
+<g class="lanes">
+<rect x="120" y="0" width="360" height="100" fill="#222222"/>
+<rect x="0" y="0" width="120" height="100" fill="#2a2a2a"/>
+<rect x="0" y="0" width="120" height="100" fill="none" stroke="#444444" stroke-width="1"/>
+<rect x="120" y="0" width="360" height="100" fill="none" stroke="#444444" stroke-width="1"/>
+<text x="60" y="50" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#dddddd" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 60 50)">Sales</text>
+<rect x="120" y="100" width="360" height="100" fill="#2a2a2a"/>
+<rect x="0" y="100" width="120" height="100" fill="#2a2a2a"/>
+<rect x="0" y="100" width="120" height="100" fill="none" stroke="#444444" stroke-width="1"/>
+<rect x="120" y="100" width="360" height="100" fill="none" stroke="#444444" stroke-width="1"/>
+<text x="60" y="150" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#dddddd" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 60 150)">Warehouse</text>
+</g>
+<g class="edges">
+<path d="M 228 50 L 314 50" fill="none" stroke="#cccccc" stroke-width="1.5" marker-end="url(#arrow-seq)"/>
+<path d="M 314 50 L 292 50 L 292 150 L 270 150" fill="none" stroke="#cccccc" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arrow-msg)"/>
+<path d="M 210 125 L 210 70" fill="none" stroke="#cccccc" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arrow-msg)"/>
+</g>
+<g class="nodes">
+<circle cx="210" cy="50" r="18" fill="#2a2a2a" stroke="#cccccc" stroke-width="1.5"/>
+<text x="210" y="84.4" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#eeeeee" text-anchor="middle">Order received</text>
+<rect x="314" y="25" width="152" height="50" rx="8" ry="8" fill="#2a2a2a" stroke="#cccccc" stroke-width="1.5"/>
+<text x="390" y="50" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#eeeeee" text-anchor="middle" dominant-baseline="middle">Check availability</text>
+<rect x="150" y="125" width="120" height="50" rx="8" ry="8" fill="#2a2a2a" stroke="#cccccc" stroke-width="1.5"/>
+<text x="210" y="150" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#eeeeee" text-anchor="middle" dominant-baseline="middle">Pack order</text>
+<circle cx="210" cy="50" r="20" fill="#2a2a2a" stroke="#cccccc" stroke-width="2"/>
+<circle cx="210" cy="50" r="15" fill="none" stroke="#cccccc" stroke-width="1.5"/>
+<text x="210" y="86.4" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#eeeeee" text-anchor="middle">Closed</text>
+</g>
+</svg>
