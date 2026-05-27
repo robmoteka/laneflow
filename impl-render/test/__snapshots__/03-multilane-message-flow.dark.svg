@@ -31,14 +31,14 @@
 <path d="M 772.5 50 L 885 50" fill="none" stroke="#cccccc" stroke-width="1.5" marker-end="url(#arrow-seq)"/>
 <rect x="817.79" y="42" width="21.919999999999998" height="16" fill="#1a1a1a"/>
 <text x="828.75" y="50" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#eeeeee" text-anchor="middle" dominant-baseline="middle">no</text>
-<path d="M 1112 50 L 1296.25 50 L 1296.25 250 L 1480.5 250" fill="none" stroke="#cccccc" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arrow-msg)"/>
+<path d="M 1112 50 L 1296.5907417371093 50 L 1296.5907417371093 255.17638090205043 L 1481.1814834742186 255.17638090205043" fill="none" stroke="#cccccc" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arrow-msg)"/>
 <path d="M 772.5 50 L 855.5 50 L 855.5 150 L 938.5 150" fill="none" stroke="#cccccc" stroke-width="1.5" marker-end="url(#arrow-seq)"/>
 <rect x="841.06" y="92" width="28.879999999999995" height="16" fill="#1a1a1a"/>
 <text x="855.5" y="100" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#eeeeee" text-anchor="middle" dominant-baseline="middle">yes</text>
 <path d="M 1058.5 144.33333333333334 L 1117.5 144.33333333333334 L 1117.5 150 L 1176.5 150" fill="none" stroke="#cccccc" stroke-width="1.5" marker-end="url(#arrow-seq)"/>
 <path d="M 1058.5 155.66666666666666 L 1123.75 155.66666666666666 L 1123.75 250 L 1189 250" fill="none" stroke="#cccccc" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arrow-msg)"/>
 <path d="M 1322.5 150 L 1401.5 150 L 1401.5 250 L 1480.5 250" fill="none" stroke="#cccccc" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arrow-msg)"/>
-<path d="M 1310 250 L 1480.5 250" fill="none" stroke="#cccccc" stroke-width="1.5" marker-end="url(#arrow-seq)"/>
+<path d="M 1310 250 L 1395.5907417371093 250 L 1395.5907417371093 244.82361909794957 L 1481.1814834742186 244.82361909794957" fill="none" stroke="#cccccc" stroke-width="1.5" marker-end="url(#arrow-seq)"/>
 </g>
 <g class="nodes">
 <circle cx="245.5" cy="50" r="18" fill="#2a2a2a" stroke="#cccccc" stroke-width="1.5"/>

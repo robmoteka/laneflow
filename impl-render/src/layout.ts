@@ -181,7 +181,7 @@ function distributeAnchors(routings: Routing[], end: 'in' | 'out'): void {
   const groups = new Map<string, Routing[]>();
   for (const r of routings) {
     const node = end === 'in' ? r.tgt : r.src;
-    if (node.shape !== 'task') continue;
+    if (node.shape === 'gateway') continue;
     const side = end === 'in' ? r.toSide : r.fromSide;
     const key = `${node.id}:${side}`;
     let g = groups.get(key);

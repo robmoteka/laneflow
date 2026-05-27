@@ -122,16 +122,21 @@ that the source document is too dense for a single column layout;
 the renderer reports nothing in this case.
 
 **Distributed anchors.** When several edges share the same side of
-the same task node (typically, multiple incoming edges into a single
-join point), the renderer distributes their anchor points evenly
-along the side instead of stacking them on the midpoint. For `N`
-edges entering through a given side, anchor `i` (0-indexed, sorted
-by source position along the perpendicular axis) sits at
-`(i + 1) / (N + 1)` of the side's length, with 8 px padding from
-each corner. The same rule applies to the source side when multiple
-edges leave through a single side. Events, end events, and gateways
-keep their fixed mid-side anchors because they rarely accumulate
-multiple connections on one side.
+the same node, the renderer distributes their anchor points instead
+of stacking them on the midpoint. For `N` edges entering (or
+leaving) through a given side, anchor `i` (0-indexed, sorted by the
+position of the other endpoint along the perpendicular axis) is
+placed at `(i + 1) / (N + 1)` along the side.
+
+- **Tasks** distribute along the rectangle side, with 8 px padding
+  from each corner.
+- **Events and end events** distribute angularly on the circle's
+  perimeter, within a ±30° arc centered on the side's normal. The
+  anchor stays on the circle so the arrow head touches the boundary.
+
+Gateways keep their fixed mid-side anchors because their branches
+typically leave through different sides, so accumulating multiple
+edges on one side is unusual.
 
 ### Edge labels
 
