@@ -161,11 +161,10 @@ export function layout(doc: Document, opts: LayoutOptions): Layout {
 function computeColumns(doc: Document): Map<string, number> {
   const col = new Map<string, number>();
   for (const n of doc.nodes) col.set(n.id, 0);
-  const sequenceFlows = doc.flows.filter((f) => f.flowType === 'sequence');
   const maxIter = doc.nodes.length + 1;
   for (let i = 0; i < maxIter; i++) {
     let changed = false;
-    for (const f of sequenceFlows) {
+    for (const f of doc.flows) {
       const src = col.get(f.source);
       const tgt = col.get(f.target);
       if (src === undefined || tgt === undefined) continue;

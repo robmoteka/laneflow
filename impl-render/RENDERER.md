@@ -30,15 +30,18 @@ directions.
 The layout engine is a simple grid:
 
 - One axis is fixed by lane declaration order.
-- The other axis is a topological ordering of nodes by **sequence
-  flow** only. Message flows do not affect column placement, because by
-  definition they cross lane boundaries and would otherwise distort the
-  per-lane progression.
-- Nodes that have no incoming sequence flow start at column 0. Each
-  outgoing sequence edge advances the column index of the target to
-  `max(current, source.col + 1)`.
+- The other axis is a topological ordering of nodes across **all
+  flows**, sequence and message alike. Every arrow means "later", so
+  every arrow advances the target one column past the source. Treating
+  only sequence flows as ordering edges produces stacked nodes for
+  cross-lane ping-pong processes, which is why the renderer uses both.
+- Nodes with no incoming flow start at column 0. Each incoming edge
+  raises the target's column to `max(current, source.col + 1)`.
 - Within a lane, the column index is treated as a slot; the cell's
   centerline is the anchor for the node.
+- Cycles, if any, are bounded by `nodes.length` iterations of
+  relaxation; the column index will saturate but layout will not
+  diverge.
 
 Cell sizes are uniform across the diagram. The renderer starts from a
 default and grows the cell width to `max(default, widest task + 24)`
